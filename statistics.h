@@ -20,149 +20,70 @@ public:
 
 };
 
+//поиск минимального значения из последовательности
 class Min : public IStatistics {
 public:
-  /*  Min() : m_min{std::numeric_limits<double>::min()} {
-    }*/
-    Min( const double val) : m_min{val} {
-       }
-
-
-    void update(double next) override {
-        if (next < m_min) {
-            m_min = next;
-        }
-    }
-
-    double eval() const override {
-        return m_min;
-    }
-
-    const char * name() const override {
-        return "min";
-    }
+    Min( const double val) : m_min{val} { }
+    void update(double next) override;
+    double eval() const override;
+    const char * name() const override;
 
 private:
     double m_min;
 };
 
+//максимальное значение из последовательности
 class Max : public IStatistics {
 public:
-   /* Max() : m_max{std::numeric_limits<double>::min()} {
-    }*/
-    Max( const double val ) : m_max(val) {
-
-    }
-
-    void update(double next) override {
-        if (next > m_max) {
-            m_max = next;
-        }
-    }
-
-    double eval() const override {
-        return m_max;
-    }
-
-    const char * name() const override {
-        return "max";
-    }
+    Max( const double val ) : m_max(val) { }
+    void update(double next) override;
+    double eval() const override;
+    const char * name() const override;
 
 private:
     double m_max;
 };
 
+//арифметическое среднее, посчитанное на основе всех элементов последовательности
 class Mean : public IStatistics {
 public:
-    Mean() : sum(0), cnt(0) {
-
-    }
-
-    void update(double next) override {
-        sum += next;
-        cnt++;
-    }
-
-    double eval() const override {
-        return sum/cnt;
-    }
-
-    const char * name() const override {
-        return "mean";
-    }
+    Mean() : sum(0), cnt(0) { }
+    void update(double next) override;
+    double eval() const override;
+    const char * name() const override;
 
 private:
     double sum;
     int cnt;
 };
 
+//среднеквадратическое отклонение
 class Std : public IStatistics {
 public:
-    Std() : sum(0), cnt(0) {
-
-    }
-
-    void update(double next) override {
-        sum += next;
-        cnt++;
-        vect.push_back(next);
-    }
-
-    double eval() const override {
-        double mean =  sum/cnt;
-        double sumSqrt = 0;
-        for (int i=0; i<vect.size(); ++i) {
-            sumSqrt += (vect.at(i) - mean) * (vect.at(i) - mean);
-        }
-        return std::sqrt(sumSqrt/vect.size());
-    }
-
-    const char * name() const override {
-        return "Std";
-    }
+    Std() : sum(0), cnt(0) { }
+    void update(double next) override;
+    double eval() const override;
+    const char * name() const override;
 
 private:
     double sum;
     int cnt;
     std::vector<double> vect;
-
 };
 
+//подсчёт процентилей, val - значение процентиля
 class Pct : public IStatistics {
 public:
-    Pct(const int &val) : pct(val) {
-
-    }
-
-    void update(double next) override {
-        vect.push_back(next);
-    }
-
-    double eval() const override {
-        std::vector<double> vectCp = vect;
-        sort(vectCp.begin(), vectCp.end());
-        double proc = (double)pct/100 * vectCp.size();
-        double ind = round(proc);
-        if (ind >= vect.size())
-            ind--;
-        else if((ind > 0) && (ind < vect.size()))
-            ind--;
-        return vect.at(ind);
-    }
-
-    const char * name() const override {
-       std::string str = "pct ";
-       str.append(std::to_string(pct));
-       //вижу, что некорректно, но не понимаю почему
-       // return str.c_str();
-    }
-
+    Pct(const int &val) : pct(val), str("pct ") {
+        str.append(std::to_string(val)); }
+    void update(double next) override;
+    double eval() const override;
+    const char * name() const override;
 
 private:
     int pct;
     std::vector<double> vect;
-
-
+    std::string str;
 };
 
 

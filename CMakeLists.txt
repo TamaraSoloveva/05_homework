@@ -13,6 +13,6 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR
     target_compile_options(05_homework PRIVATE -Wall -Wextra -Werror -pedantic)
 
 elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    target_compile_options(04_homework PRIVATE /EHsc /W4 /WX)
+    target_compile_options(05_homework PRIVATE /EHsc /W4 /WX)
 
  endif()

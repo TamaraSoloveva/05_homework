@@ -14,12 +14,16 @@ int main()
     IStatistics *statistics[statistics_count];
 
     double val = 0;
+    std::cin >> val;
     statistics[0] = new Min{val};
     statistics[1] = new Max{val};
     statistics[2] = new Mean{};
     statistics[3] = new Std{};
-    statistics[4] = new Pct{40};
+    statistics[4] = new Pct{90};
     statistics[5] = new Pct{95};
+    for (size_t i = 0; i < statistics_count; ++i) {
+        statistics[i]->update(val);
+    }
 
     while (std::cin >> val) {
         for (size_t i = 0; i < statistics_count; ++i) {

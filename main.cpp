@@ -1,5 +1,10 @@
 #include <iostream>
 #include "statistics.h"
+#include "statistics_min.h"
+#include "statistics_max.h"
+#include "statistics_mean.h"
+#include "statistics_std.h"
+#include "statistics_pct.h"
 
 using namespace std;
 

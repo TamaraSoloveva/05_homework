@@ -1,4 +1,4 @@
-#include "statistics.h"
+#include "statistics_max.h"
 
 void Max::update(double next)  {
     if (next > m_max) {

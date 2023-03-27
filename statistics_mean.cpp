@@ -1,4 +1,4 @@
-#include "statistics.h"
+#include "statistics_mean.h"
 
 void Mean::update(double next)  {
     sum += next;

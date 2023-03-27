@@ -1,4 +1,4 @@
-#include "statistics.h"
+#include "statistics_min.h"
 
 void Min::update(double next) {
     if (next < m_min) {

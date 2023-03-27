@@ -1,4 +1,4 @@
-#include "statistics.h"
+#include "statistics_std.h"
 
 void Std::update(double next) {
     sum += next;
@@ -9,7 +9,7 @@ void Std::update(double next) {
 double Std::eval() const {
     double mean =  sum/cnt;
     double sumSqrt = 0;
-    for (int i=0; i<vect.size(); ++i) {
+    for (size_t i=0; i<vect.size(); ++i) {
         sumSqrt += (vect.at(i) - mean) * (vect.at(i) - mean);
     }
     return std::sqrt(sumSqrt/vect.size());

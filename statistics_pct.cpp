@@ -1,4 +1,4 @@
-#include "statistics.h"
+#include "statistics_pct.h"
 
 void Pct::update(double next) {
     vect.push_back(next);
